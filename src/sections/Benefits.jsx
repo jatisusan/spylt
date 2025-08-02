@@ -1,6 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import ClipPathTitle from "../components/ClipPathTitle";
 import gsap from "gsap";
+import VideoPin from "../components/VideoPin";
 
 const Benefits = () => {
   useGSAP(() => {
@@ -81,10 +82,14 @@ const Benefits = () => {
             />
           </div>
 
-          <div className="md:mt-0 mb-10 mt-10">
+          <div className="md:mt-0 mt-10">
             <p>And much more ...</p>
           </div>
         </div>
+      </div>
+
+      <div className="relative">
+        <VideoPin />
       </div>
     </section>
   );
