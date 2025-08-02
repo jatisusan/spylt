@@ -6,6 +6,7 @@ import Message from "./sections/Message";
 import Flavor from "./sections/Flavor";
 import { useGSAP } from "@gsap/react";
 import Nutrition from "./sections/Nutrition";
+import Benefits from "./sections/Benefits";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -29,6 +30,7 @@ const App = () => {
           <Message />
           <Flavor />
           <Nutrition />
+          <Benefits />
           <div className="h-dvh border border-black"></div>
         </div>
       </div>
