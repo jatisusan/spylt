@@ -11,7 +11,6 @@ const FlavorSlider = () => {
 
   useGSAP(() => {
     const scrollAmount = sliderRef.current.scrollWidth - window.innerWidth;
-    console.log(scrollAmount);
 
     if (!isTablet) {
       const tl = gsap.timeline({
