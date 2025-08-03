@@ -1,56 +1,83 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
+import { useMediaQuery } from "react-responsive";
 
 const Hero = () => {
+  const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
 
-    useGSAP(() => {
-        const titleSplit = SplitText.create('.hero-title', {type: 'chars'});
+  useGSAP(() => {
+    const titleSplit = SplitText.create(".hero-title", { type: "chars" });
 
-        const tl = gsap.timeline({
-            delay: 1
-        });
+    const tl = gsap.timeline({
+      delay: 1,
+    });
 
-        tl.from('.hero-content', {
-            opacity: 0,
-            ease: 'power1.inOut',
-            y: 100
-        }).to('.hero-text-scroll', {
-            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-            duration: 0.5,
-            ease: 'power1.inOut'
-        }, "-=0.5")
-        .from(titleSplit.chars, {
-            yPercent: 200,
-            stagger: 0.02,
-            ease: 'power2.out'
-        }, "-=0.5");
-
-        const scrollTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: '.hero-container',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true
-          }
-        })
-
-        scrollTl.to('.hero-container', {
-          rotate: 7,
-          scale: 0.9,
-          yPercent: 30,
-          ease: 'power1.inOut',
-        })
+    tl.from(".hero-content", {
+      opacity: 0,
+      ease: "power1.inOut",
+      y: 100,
     })
+      .to(
+        ".hero-text-scroll",
+        {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          duration: 0.5,
+          ease: "power1.inOut",
+        },
+        "-=0.5"
+      )
+      .from(
+        titleSplit.chars,
+        {
+          yPercent: 200,
+          stagger: 0.02,
+          ease: "power2.out",
+        },
+        "-=0.5"
+      );
+
+    const scrollTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".hero-container",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    scrollTl.to(".hero-container", {
+      rotate: 7,
+      scale: 0.9,
+      yPercent: 30,
+      ease: "power1.inOut",
+    });
+  });
 
   return (
     <section className="bg-main-bg">
       <div className="hero-container">
-        <img
-          src="/images/static-img.png"
-          alt="hero-img"
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 object-auto scale-100 md:scale-150"
-        />
+        {isTablet ? (
+          <>
+            <img
+              src="/images/hero-bg.png"
+              alt=""
+              className="absolute bottom-40 size-full object-cover"
+            />
+            <img
+              src="/images/hero-img.png"
+              alt=""
+              className="absolute bottom-0 left-1/2 -translate-x-1/2"
+            />
+          </>
+        ) : (
+          <video
+            src="/videos/hero-bg.mp4"
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            muted
+          />
+        )}
 
         <div className="hero-content">
           <div className="overflow-hidden">

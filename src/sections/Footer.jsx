@@ -10,6 +10,8 @@ const Footer = () => {
   const vidRef = useRef();
 
   useGSAP(() => {
+    if (isMobile) return null;
+
     gsap.set(vidRef.current, { paused: true });
 
     ScrollTrigger.create({
